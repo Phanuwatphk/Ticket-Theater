@@ -93,6 +93,9 @@ public class StaffController {
 
     @FXML
     private TableColumn<MovieStore.MovieRecord, String> movieTitleColumn;
+    
+    @FXML
+    private TableColumn<MovieStore.MovieRecord, String> movieGenreColumn;
 
     @FXML
     private TableColumn<MovieStore.MovieRecord, String> movieDurationColumn;
@@ -172,14 +175,6 @@ public class StaffController {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         timeStampColumn.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
-        ticketColumn.setResizable(false);
-        movieColumn.setResizable(false);
-        timeColumn.setResizable(false);
-        seatsColumn.setResizable(false);
-        nameColumn.setResizable(false);
-        phoneColumn.setResizable(false);
-        priceColumn.setResizable(false);
-        timeStampColumn.setResizable(false);
         bookingTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         bookingTable.getSelectionModel().getSelectedItems().addListener(
                 (javafx.collections.ListChangeListener<BookingStore.BookingRecord>) change -> {
@@ -192,6 +187,11 @@ public class StaffController {
 
         movieTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         movieTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        
+        if (movieGenreColumn != null) {
+            movieGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        }
+        
         movieDurationColumn.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getDuration() + " นาที"));
         movieDirectorColumn.setCellValueFactory(new PropertyValueFactory<>("director"));
@@ -199,16 +199,14 @@ public class StaffController {
                 new SimpleStringProperty(formatShowtimesDisplay(cell.getValue().getShowtimes())));
         moviePosterColumn.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getPosterName() == null ? "-" : cell.getValue().getPosterName()));
+                
         movieTitleColumn.setSortable(false);
+        if (movieGenreColumn != null) movieGenreColumn.setSortable(false);
         movieDurationColumn.setSortable(false);
         movieDirectorColumn.setSortable(false);
         movieShowtimesColumn.setSortable(false);
         moviePosterColumn.setSortable(false);
-        movieTitleColumn.setResizable(false);
-        movieDurationColumn.setResizable(false);
-        movieDirectorColumn.setResizable(false);
-        movieShowtimesColumn.setResizable(false);
-        moviePosterColumn.setResizable(false);
+        
         movieTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         movieTable.getSelectionModel().getSelectedItems().addListener(
                 (javafx.collections.ListChangeListener<MovieStore.MovieRecord>) change -> {
@@ -425,6 +423,7 @@ public class StaffController {
         Movie movie = new Movie(
                 result.title,
                 result.duration,
+                result.genre,
                 result.director,
                 result.description,
                 result.posterBase64 == null ? MockData.loadPoster(result.posterName) : MovieStore.imageFromBase64(result.posterBase64)
@@ -447,6 +446,7 @@ public class StaffController {
         Movie movie = new Movie(
                 result.title,
                 result.duration,
+                result.genre,
                 result.director,
                 result.description,
                 result.posterBase64 == null ? MockData.loadPoster(result.posterName) : MovieStore.imageFromBase64(result.posterBase64)
@@ -663,13 +663,13 @@ public class StaffController {
 
         TextField titleField = new TextField(existing == null ? "" : existing.getTitle());
         TextField durationField = new TextField(existing == null ? "" : String.valueOf(existing.getDuration()));
+        TextField genreField = new TextField(existing == null || existing.getGenre() == null ? "" : existing.getGenre());
         TextField directorField = new TextField(existing == null ? "" : existing.getDirector());
         
-        // เพิ่ม TextArea สำหรับกรอกเรื่องย่อ
         TextArea descriptionField = new TextArea(existing == null || existing.getDescription() == null ? "" : existing.getDescription());
         descriptionField.setPrefRowCount(3);
         descriptionField.setWrapText(true);
-        
+
         TextField imageField = new TextField(existing == null ? "" : (existing.getPosterName() == null ? "" : existing.getPosterName()));
         String showtimesText = existing == null || existing.getShowtimes() == null ? "" : existing.getShowtimes().stream()
                 .map(ShowtimeUtils::normalizeToken)
@@ -701,22 +701,21 @@ public class StaffController {
         grid.add(titleField, 1, 0);
         grid.add(new Label("ความยาว (นาที)"), 0, 1);
         grid.add(durationField, 1, 1);
-        grid.add(new Label("ผู้กำกับ"), 0, 2);
-        grid.add(directorField, 1, 2);
-        
-        // เพิ่มเรื่องย่อลงไปในหน้าต่าง Dialog
-        grid.add(new Label("เรื่องย่อ"), 0, 3);
-        grid.add(descriptionField, 1, 3);
-        
-        grid.add(new Label("ไฟล์รูป"), 0, 4);
+        grid.add(new Label("ประเภท"), 0, 2);
+        grid.add(genreField, 1, 2);
+        grid.add(new Label("ผู้กำกับ"), 0, 3);
+        grid.add(directorField, 1, 3);
+        grid.add(new Label("เรื่องย่อ"), 0, 4);
+        grid.add(descriptionField, 1, 4);
+        grid.add(new Label("ไฟล์รูป"), 0, 5);
         HBox imageBox = new HBox(8, imageField, chooseButton);
-        grid.add(imageBox, 1, 4);
-        grid.add(new Label("รอบฉาย (เวลา@โรง)"), 0, 5);
-        grid.add(showtimesField, 1, 5);
+        grid.add(imageBox, 1, 5);
+        grid.add(new Label("รอบฉาย (เวลา@โรง)"), 0, 6);
+        grid.add(showtimesField, 1, 6);
         Label showtimesHelp = new Label("ตัวอย่าง: 10:00@1, 15:00@2, 18:00@3");
         showtimesHelp.setStyle("-fx-text-fill: gray; -fx-font-size: 11px;");
-        grid.add(showtimesHelp, 1, 6);
-        grid.add(errorLabel, 1, 7);
+        grid.add(showtimesHelp, 1, 7);
+        grid.add(errorLabel, 1, 8);
         pane.setContent(grid);
 
         Button okButton = (Button) pane.lookupButton(ButtonType.OK);
@@ -766,8 +765,9 @@ public class StaffController {
             }
             String title = titleField.getText().trim();
             int duration = Integer.parseInt(durationField.getText().trim());
+            String genre = genreField.getText().trim();
             String director = directorField.getText().trim();
-            String description = descriptionField.getText().trim(); // ดึงค่าเรื่องย่อ
+            String description = descriptionField.getText().trim();
             List<String> times = parseShowtimeTokens(showtimesField.getText());
             String posterBase64 = existing == null ? null : existing.getPosterBase64();
             String posterName = existing == null ? null : existing.getPosterName();
@@ -789,8 +789,7 @@ public class StaffController {
                     return null;
                 }
             }
-            // คืนค่า MovieFormResult พร้อมกับตัวแปร description
-            return new MovieFormResult(title, duration, director, description, times, posterBase64, posterName);
+            return new MovieFormResult(title, duration, genre, director, description, times, posterBase64, posterName);
         });
 
         return dialog.showAndWait().orElse(null);
@@ -808,7 +807,6 @@ public class StaffController {
                 return parts[0] + " (โรง " + parts[1] + ")";
             }
         }
-        // Try to find the theater from the showtime map
         String movieTitle = record.getMovieTitle();
         if (movieTitle != null) {
             List<Showtimes> showtimes = MockData.getShowtimesMap().get(movieTitle);
@@ -820,7 +818,6 @@ public class StaffController {
                 }
             }
         }
-        // Fallback: assume theater 1
         return showtime + " (โรง 1)";
     }
 
@@ -882,8 +879,9 @@ public class StaffController {
     private static class MovieFormResult {
         private final String title;
         private final int duration;
+        private final String genre;
         private final String director;
-        private final String description; // ฟิลด์ใหม่
+        private final String description;
         private final List<String> showtimes;
         private final String posterBase64;
         private final String posterName;
@@ -891,6 +889,7 @@ public class StaffController {
         private MovieFormResult(
                 String title,
                 int duration,
+                String genre,
                 String director,
                 String description,
                 List<String> showtimes,
@@ -899,6 +898,7 @@ public class StaffController {
         ) {
             this.title = title;
             this.duration = duration;
+            this.genre = genre;
             this.director = director;
             this.description = description;
             this.showtimes = showtimes;

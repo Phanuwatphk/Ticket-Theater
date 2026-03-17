@@ -124,6 +124,7 @@ public class MovieStore {
     public static class MovieRecord {
         private String title;
         private int duration;
+        private String genre;
         private String director;
         private String description;
         private List<String> showtimes = new ArrayList<>();
@@ -133,6 +134,7 @@ public class MovieStore {
         public MovieRecord(
                 String title,
                 int duration,
+                String genre,
                 String director,
                 String description,
                 List<String> showtimes,
@@ -141,6 +143,7 @@ public class MovieStore {
         ) {
             this.title = title;
             this.duration = duration;
+            this.genre = genre;
             this.director = director;
             this.description = description;
             if (showtimes != null) {
@@ -150,32 +153,14 @@ public class MovieStore {
             this.posterName = posterName;
         }
 
-        public String getTitle() {
-            return title;
-        }
-
-        public int getDuration() {
-            return duration;
-        }
-
-        public String getDirector() {
-            return director;
-        }
-
-        public String getDescription() { 
-            return description; }
-
-        public List<String> getShowtimes() {
-            return showtimes;
-        }
-
-        public String getPosterBase64() {
-            return posterBase64;
-        }
-
-        public String getPosterName() {
-            return posterName;
-        }
+        public String getTitle() { return title; }
+        public int getDuration() { return duration; }
+        public String getGenre() { return genre; }
+        public String getDirector() { return director; }
+        public String getDescription() { return description; }
+        public List<String> getShowtimes() { return showtimes; }
+        public String getPosterBase64() { return posterBase64; }
+        public String getPosterName() { return posterName; }
     }
 
     private static class StoreData {

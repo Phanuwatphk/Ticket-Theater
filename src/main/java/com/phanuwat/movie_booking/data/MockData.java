@@ -22,7 +22,7 @@ public class MockData {
             new MovieStore.MovieRecord(
                     "Interstellar",
                     169,
-                    "Christopher Nolan","-",
+                    "Christopher Nolan","Sci-Fi","-",
                     Arrays.asList("10:00@1", "15:00@2", "18:00@1", "20:00@3"),
                     null,
                     "Interstellar.jpg"
@@ -30,7 +30,7 @@ public class MockData {
             new MovieStore.MovieRecord(
                     "Inception",
                     148,
-                    "Christopher Nolan","-",
+                    "Christopher Nolan","Sci-Fi","-",
                     Arrays.asList("11:00@2", "14:00@1", "17:00@3", "19:00@2"),
                     null,
                     "Inception.jpg"
@@ -38,7 +38,7 @@ public class MockData {
             new MovieStore.MovieRecord(
                     "Avatar 1",
                     162,
-                    "James Cameron","-",
+                    "James Cameron","Sci-Fi","-",
                     Arrays.asList("11:00@3", "15:00@1", "19:00@2", "21:00@3"),
                     null,
                     "Avatar.jpg"
@@ -46,7 +46,7 @@ public class MockData {
             new MovieStore.MovieRecord(
                     "The Matrix",
                     136,
-                    "The Wachowskis","-",
+                    "The Wachowskis","Sci-Fi","-",
                     Arrays.asList("09:30@1", "14:00@2", "18:00@1", "21:00@3"),
                     null,
                     "The_Matrix.png"
@@ -54,7 +54,7 @@ public class MockData {
             new MovieStore.MovieRecord(
                     "Terminator",
                     107,
-                    "James Cameron","-",
+                    "James Cameron","Sci-Fi","-",
                     Arrays.asList("09:30@2", "14:00@3", "18:00@2", "21:00@1"),
                     null,
                     "Terminator.jpg"
@@ -86,6 +86,7 @@ public class MockData {
         MovieStore.MovieRecord record = new MovieStore.MovieRecord(
                 movie.getTitle(),
                 movie.getDuration(),
+                movie.getGenre(),
                 movie.getDirector(),
                 movie.getDescription(),
                 showtimes,
@@ -115,6 +116,7 @@ public class MockData {
         MovieStore.MovieRecord record = new MovieStore.MovieRecord(
                 movie.getTitle(),
                 movie.getDuration(),
+                movie.getGenre(),
                 movie.getDirector(),
                 movie.getDescription(),
                 showtimes,
@@ -187,6 +189,7 @@ public class MockData {
             Movie movie = new Movie(
                     record.getTitle(),
                     record.getDuration(),
+                    record.getGenre(),
                     record.getDirector(),
                     record.getDescription(),
                     poster

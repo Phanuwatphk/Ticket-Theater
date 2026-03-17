@@ -1,25 +1,28 @@
 package com.phanuwat.movie_booking.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.phanuwat.movie_booking.data.MockData;
 import com.phanuwat.movie_booking.model.Movie;
 import com.phanuwat.movie_booking.model.Showtimes;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import java.io.IOException;
 
 public class HomeController {
 
@@ -30,31 +33,70 @@ public class HomeController {
     private BorderPane rootPane;
 
     @FXML
-    private TextField searchField; 
+    private TextField searchField;
+
+    @FXML
+    private ComboBox<String> genreComboBox;
 
     @FXML
     public void initialize() {
-        loadMovies("");
+        Map<String, List<Showtimes>> showtimes = MockData.getShowtimesMap();
+        Set<String> genres = new HashSet<>();
+        genres.add("ทั้งหมด"); 
+        
+        for (List<Showtimes> list : showtimes.values()) {
+            if (list != null && !list.isEmpty()) {
+                String genre = list.get(0).getMovie().getGenre();
+                if (genre != null && !genre.isBlank()) {
+                    genres.add(genre);
+                }
+            }
+        }
+    
+        if (genreComboBox != null) {
+            genreComboBox.getItems().addAll(genres);
+            genreComboBox.getSelectionModel().select("ทั้งหมด");
+            
+            genreComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+                executeFilter();
+            });
+        }
 
         if (searchField != null) {
             searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                loadMovies(newValue.trim().toLowerCase());
+                executeFilter();
             });
         }
+
+        executeFilter();
     }
 
-    private void loadMovies(String keyword) {
-        // เคลียร์ผลลัพธ์เก่าออกก่อน
+    private void executeFilter() {
+        String keyword = searchField != null && searchField.getText() != null 
+                ? searchField.getText().trim().toLowerCase() : "";
+        String selectedGenre = genreComboBox != null && genreComboBox.getValue() != null 
+                ? genreComboBox.getValue() : "ทั้งหมด";
+        
+        loadMovies(keyword, selectedGenre);
+    }
+
+    private void loadMovies(String keyword, String selectedGenre) {
         movieContainer.getChildren().clear();
 
         Map<String, List<Showtimes>> showtimes = MockData.getShowtimesMap();
         List<String> movies = new ArrayList<>(showtimes.keySet());
 
         for (String movieTitle : movies) {
+            List<Showtimes> movieShowtimes = showtimes.get(movieTitle);
+            if (movieShowtimes == null || movieShowtimes.isEmpty()) continue;
             
-            // ระบบกรอง: ถ้าช่องค้นหาไม่ได้ว่างเปล่า และชื่อหนัง(ตัวพิมพ์เล็ก)ไม่มีคำที่ค้นหา ให้ข้ามเรื่องนี้ไป
-            if (!keyword.isEmpty() && !movieTitle.toLowerCase().contains(keyword)) {
+            Movie movie = movieShowtimes.get(0).getMovie();
+
+            if (!keyword.isEmpty() && !movie.getTitle().toLowerCase().contains(keyword)) {
                 continue;
+
+            if (!selectedGenre.equals("ทั้งหมด") && !movie.getGenre().equals(selectedGenre)) {
+                continue; 
             }
 
             VBox movieCard = new VBox();
@@ -62,15 +104,11 @@ public class HomeController {
             movieCard.setAlignment(Pos.CENTER);
             movieCard.getStyleClass().add("movie-card");
 
-            List<Showtimes> movieShowtimes = showtimes.get(movieTitle);
-            Movie movie = movieShowtimes.get(0).getMovie();
-
-            Label title = new Label(movieTitle);
+            Label title = new Label(movie.getTitle());
             title.getStyleClass().add("card-title");
-            Label director = new Label("Director: " + movie.getDirector());
-            director.getStyleClass().add("card-meta");
-            Label duration = new Label("Duration: " + movie.getDuration() + " min");
-            duration.getStyleClass().add("card-meta");
+            
+            Label metaLabel = new Label(movie.getGenre() + " | " + movie.getDuration() + " min");
+            metaLabel.getStyleClass().add("card-meta");
 
             ImageView poster = new ImageView(movie.getPoster());
             if (poster != null) {
@@ -81,7 +119,8 @@ public class HomeController {
                 movieCard.getChildren().add(poster);
             }
 
-            movieCard.getChildren().addAll(title, director, duration);
+            movieCard.getChildren().addAll(title, metaLabel);
+            
             movieCard.setOnMouseClicked(event -> openMovieDetail(movie, movieShowtimes));
 
             movieContainer.getChildren().add(movieCard);

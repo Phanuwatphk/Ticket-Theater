@@ -81,6 +81,7 @@
                         <TableView fx:id="movieTable" prefHeight="520">
                             <columns>
                                 <TableColumn fx:id="movieTitleColumn" prefWidth="180" resizable="false" text="ชื่อหนัง" />
+                                <TableColumn fx:id="movieGenreColumn" prefWidth="120" resizable="false" text="ประเภท" />
                                 <TableColumn fx:id="movieDurationColumn" prefWidth="100" resizable="false" text="ความยาว" />
                                 <TableColumn fx:id="movieDirectorColumn" prefWidth="160" resizable="false" text="ผู้กำกับ" />
                                 <TableColumn fx:id="movieShowtimesColumn" prefWidth="260" resizable="false" text="รอบฉาย" />
