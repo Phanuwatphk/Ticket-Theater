@@ -3,46 +3,59 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="rootPane" prefWidth="846.0" styleClass="app-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.phanuwat.movie_booking.controller.HomeController">
 
-    <!-- header -->
     <top>
         <BorderPane styleClass="header-bar">
+            <left>
+                <Label text="Ticket Theater" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </left>
+            <center>
+                <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ค้นหา">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+                    <TextField fx:id="searchField" prefWidth="300.0" promptText="ค้นหาชื่อหนัง..." style="-fx-background-radius: 16; -fx-padding: 6 12;">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextField>
+                </HBox>
+            </center>
             <right>
-                <Button onAction="#handleStaff" styleClass="btn-ghost" text="พนักงาน">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
+                <Button onAction="#handleStaff" styleClass="btn-ghost" text="พนักงาน" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
             </right>
-         <left>
-            <Label text="Ticket Theater" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-         </left>
         </BorderPane>
     </top>
 
-    <!-- movie list -->
     <center>
         <ScrollPane fitToWidth="true">
-
             <VBox alignment="CENTER" prefHeight="114.0" prefWidth="845.0" spacing="26" style="-fx-padding:24 16 32;">
-
                 <Label styleClass="section-title" text="กำลังฉาย">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
                 <FlowPane fx:id="movieContainer" alignment="CENTER" hgap="40" vgap="40" />
-
             </VBox>
-
         </ScrollPane>
     </center>
 

@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -29,13 +30,32 @@ public class HomeController {
     private BorderPane rootPane;
 
     @FXML
+    private TextField searchField; 
+
+    @FXML
     public void initialize() {
+        loadMovies("");
+
+        if (searchField != null) {
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                loadMovies(newValue.trim().toLowerCase());
+            });
+        }
+    }
+
+    private void loadMovies(String keyword) {
+        // เคลียร์ผลลัพธ์เก่าออกก่อน
+        movieContainer.getChildren().clear();
 
         Map<String, List<Showtimes>> showtimes = MockData.getShowtimesMap();
         List<String> movies = new ArrayList<>(showtimes.keySet());
 
-
         for (String movieTitle : movies) {
+            
+            // ระบบกรอง: ถ้าช่องค้นหาไม่ได้ว่างเปล่า และชื่อหนัง(ตัวพิมพ์เล็ก)ไม่มีคำที่ค้นหา ให้ข้ามเรื่องนี้ไป
+            if (!keyword.isEmpty() && !movieTitle.toLowerCase().contains(keyword)) {
+                continue;
+            }
 
             VBox movieCard = new VBox();
             movieCard.setSpacing(10);
