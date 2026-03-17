@@ -5,6 +5,7 @@
       "A1",
       "A2",
       "A3",
+      "E7",
       "A4",
       "A5",
       "A6",
@@ -60,7 +61,8 @@
       "B16",
       "B17",
       "B18",
-      "B19"
+      "B19",
+      "D7"
     ],
     "Interstellar@10:00": [
       "A1"
@@ -86,7 +88,17 @@
       "phone": "0321654987",
       "totalPrice": "7200 บาท",
       "timestamp": "2026-03-17 11:40"
+    },
+    {
+      "ticketId": "T0170-T0171",
+      "movieTitle": "บอดี้การ์ดหน้าเหลี่ยม 1",
+      "showtime": "08:00",
+      "seats": "D7, E7",
+      "name": "Test",
+      "phone": "0123456789",
+      "totalPrice": "320 บาท",
+      "timestamp": "2026-03-17 20:09"
     }
   ],
-  "ticketCounter": 170
+  "ticketCounter": 172
 }

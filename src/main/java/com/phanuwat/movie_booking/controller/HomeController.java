@@ -92,7 +92,6 @@ public class HomeController {
             
             Movie movie = movieShowtimes.get(0).getMovie();
 
-            // เพิ่มวงเล็บปีกกาปิด } ที่หายไปตรงนี้ครับ
             if (!keyword.isEmpty() && !movie.getTitle().toLowerCase().contains(keyword)) {
                 continue;
             }
