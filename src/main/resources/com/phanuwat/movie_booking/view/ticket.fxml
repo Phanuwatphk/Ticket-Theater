@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.phanuwat.movie_booking.controller.TicketController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label styleClass="header-title" text="ตั๋วของคุณ">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane style="-fx-padding:22;">
+            <StackPane fx:id="ticketCard" prefHeight="360" prefWidth="820" styleClass="ticket-card">
+                <HBox alignment="CENTER_LEFT" spacing="0">
+                    <VBox alignment="TOP_CENTER" prefWidth="230" spacing="12" styleClass="ticket-left">
+                        <Label styleClass="ticket-brand" text="TT">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <ImageView fx:id="posterImage" fitHeight="230" fitWidth="160" preserveRatio="true" />
+                        <Label fx:id="ticketIdLabel" styleClass="ticket-id" text="TICKET ID">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                    </VBox>
+                    <VBox alignment="TOP_LEFT" prefWidth="590" spacing="16" style="-fx-padding:20 24;">
+                        <VBox spacing="4">
+                            <Label styleClass="ticket-meta" text="TICKET THEATER">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                            <Label fx:id="movieLabel" styleClass="ticket-hero" text="Movie Title">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                            <Label fx:id="timeLabel" styleClass="subtitle" text="Showtime">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT" spacing="18">
+                            <VBox spacing="6">
+                                <Label styleClass="ticket-meta" text="ที่นั่ง / SEAT">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                                <Label fx:id="seatBigLabel" styleClass="ticket-seat" text="A1">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                                <Label fx:id="seatsLabel" styleClass="ticket-meta" text="ที่นั่ง: -">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label styleClass="ticket-meta" text="ผู้จอง / CUSTOMER">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                                <Label fx:id="nameLabel" styleClass="subtitle" text="-" />
+                                <Label fx:id="phoneLabel" styleClass="ticket-meta" text="-" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </StackPane>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <VBox styleClass="footer-bar">
+            <HBox alignment="CENTER_RIGHT" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Button fx:id="prevSeatButton" onAction="#handlePrevSeat" styleClass="btn-secondary" text="ก่อนหน้า" />
+                    <Label fx:id="seatIndexLabel" styleClass="ticket-meta" text="1/1" />
+                    <Button fx:id="nextSeatButton" onAction="#handleNextSeat" styleClass="btn-secondary" text="ถัดไป" />
+                </HBox>
+                <Button onAction="#handleDownload" styleClass="btn-outline" text="ดาวน์โหลด" />
+                <Button onAction="#handleFinish" styleClass="btn-primary" text="เสร็จสิ้น" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

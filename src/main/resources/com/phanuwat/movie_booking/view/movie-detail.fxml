@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.phanuwat.movie_booking.controller.MovieDetailController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label fx:id="titleLabel" styleClass="header-title" text="ชื่อหนัง">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="16" style="-fx-padding:28;">
+            <HBox alignment="CENTER" spacing="32">
+                <ImageView fx:id="posterImage" fitHeight="380" fitWidth="260" preserveRatio="true" />
+                <VBox alignment="TOP_LEFT" spacing="12" styleClass="panel">
+                    <Label fx:id="durationLabel" styleClass="subtitle" text="Duration: 0 min">
+                   <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label fx:id="directorLabel" styleClass="subtitle" text="Director: -">
+                  <font>
+                       <Font size="18.0" />
+                  </font></Label>
+                    <Label styleClass="section-title" text="รอบฉาย">
+                  <font>
+                     <Font size="18.0" />
+                   </font></Label>
+                    
+                    <FlowPane fx:id="showtimeContainer" hgap="10" vgap="10" />
+                    
+                    <Label styleClass="section-title" text="เรื่องย่อ" style="-fx-padding: 10 0 0 0;">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="descriptionLabel" styleClass="subtitle" wrapText="true" maxWidth="450">
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                    </Label>
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" styleClass="btn-secondary" text="กลับ" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,237 @@
+.root {
+    -fx-font-family: "Poppins", "Segoe UI", "Noto Sans", "Arial";
+    -fx-background-color: #f3f6fb;
+}
+
+.app-root {
+    -fx-background-color: #f3f6fb;
+}
+
+.header-bar {
+    -fx-background-color: linear-gradient(to right, #1e5aa8, #2b72c6);
+    -fx-padding: 14 22;
+}
+
+.header-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.header-title-lg {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1d2a3a;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #3b4a5a;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: #d7e3f4;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 10, 0.2, 0, 3);
+}
+
+.movie-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: #d7e3f4;
+    -fx-padding: 14;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 10, 0.2, 0, 3);
+}
+
+.movie-card:hover {
+    -fx-translate-y: -2;
+}
+
+.card-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1d2a3a;
+}
+
+.card-meta {
+    -fx-font-size: 15px;
+    -fx-text-fill: #3b4a5a;
+}
+
+.panel {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #d7e3f4;
+    -fx-padding: 14;
+}
+
+.panel-soft {
+    -fx-background-color: #eaf0f9;
+    -fx-background-radius: 16;
+    -fx-padding: 14;
+}
+
+.panel-accent {
+    -fx-background-color: #1e5aa8;
+    -fx-background-radius: 18;
+    -fx-padding: 16;
+}
+
+.panel-accent .label {
+    -fx-text-fill: white;
+}
+
+.screen-bar {
+    -fx-background-color: #eaf0f9;
+    -fx-text-fill: #1e5aa8;
+    -fx-font-size: 16px;
+    -fx-padding: 10 160;
+    -fx-background-radius: 14;
+}
+
+.seat-surface {
+    -fx-background-color: white;
+    -fx-border-color: #c8d8f0;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+}
+
+.price-band {
+    -fx-background-color: #eaf0f9;
+    -fx-background-radius: 14;
+    -fx-padding: 8 14;
+}
+
+.btn-primary {
+    -fx-background-color: #1e5aa8;
+    -fx-text-fill: white;
+    -fx-background-radius: 18;
+    -fx-padding: 8 20;
+    -fx-font-weight: bold;
+}
+
+.btn-secondary {
+    -fx-background-color: #eaf0f9;
+    -fx-text-fill: #1e5aa8;
+    -fx-background-radius: 16;
+    -fx-padding: 6 18;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1e5aa8;
+    -fx-border-color: #1e5aa8;
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
+    -fx-padding: 6 18;
+}
+
+.btn-ghost {
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-text-fill: white;
+    -fx-background-radius: 16;
+    -fx-padding: 6 16;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #d7e3f4;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #eaf0f9;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: #eaf0f9;
+    -fx-padding: 6 6 0 6;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #dbe7f7;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+}
+
+.footer-bar {
+    -fx-background-color: #eaf0f9;
+    -fx-padding: 12 24 22;
+}
+
+.ticket-card {
+    -fx-background-color: #f9fbff;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: #c8d8f0;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 12, 0.2, 0, 4);
+}
+
+.ticket-left {
+    -fx-background-color: linear-gradient(to bottom, #1e5aa8, #2b72c6);
+    -fx-background-radius: 16 0 0 16;
+    -fx-padding: 16;
+}
+
+.ticket-brand {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.ticket-id {
+    -fx-text-fill: #e9f1ff;
+    -fx-font-size: 12px;
+}
+
+.ticket-meta {
+    -fx-text-fill: #5a6b80;
+    -fx-font-size: 12px;
+}
+
+.ticket-hero {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.ticket-seat {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+}
+
+.badge-soft {
+    -fx-background-color: #eaf0f9;
+    -fx-text-fill: #1e5aa8;
+    -fx-background-radius: 12;
+    -fx-padding: 4 10;
+}

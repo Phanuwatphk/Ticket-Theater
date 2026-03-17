@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.phanuwat.movie_booking.controller.SeatSelectionController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label fx:id="movieTitleLabel" styleClass="header-title" text="ชื่อหนัง">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="TOP_CENTER" spacing="28" style="-fx-padding:22;">
+            <VBox alignment="TOP_CENTER" prefWidth="320" spacing="12">
+                <ImageView fx:id="posterImage" fitHeight="320" fitWidth="240" preserveRatio="true" />
+                <VBox spacing="10" styleClass="panel-accent">
+                    <Label fx:id="timeLabel" style="-fx-font-size:18px;" text="เวลา: -">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label fx:id="selectedSeatsLabel" maxWidth="260" style="-fx-font-size:14px;" text="ยังไม่ได้เลือกที่นั่ง" wrapText="true">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label fx:id="totalPriceLabel" style="-fx-font-size:14px;" text="ราคารวม: 0 บาท">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label fx:id="theaterLabel" style="-fx-font-size:14px;" text="โรง: -">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                </VBox>
+                <Label fx:id="formHintLabel" style="-fx-text-fill:#1e5aa8; -fx-font-size:14px;" text="" />
+            </VBox>
+            <VBox alignment="TOP_CENTER" spacing="10">
+                <Label styleClass="screen-bar" text="screen">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <StackPane prefHeight="420" prefWidth="760" styleClass="seat-surface">
+                    <GridPane fx:id="seatGrid" alignment="CENTER" hgap="4" vgap="4" />
+                </StackPane>
+                <HBox alignment="CENTER" spacing="14" styleClass="price-band">
+                    <Label style="-fx-font-size:13px; -fx-font-weight:bold;" text="ราคาโซน">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label style="-fx-font-size:12px;" text="A-C 120">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label style="-fx-font-size:12px;" text="D-G 160">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <Label style="-fx-font-size:12px;" text="H-J 200">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" styleClass="btn-secondary" text="กลับ" />
+            <Button onAction="#handleConfirm" styleClass="btn-primary" text="ยืนยันที่นั่ง" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.phanuwat.movie_booking.controller.CustomerInfoController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label styleClass="header-title" text="กรอกข้อมูลผู้จอง">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="TOP_CENTER" spacing="32" style="-fx-padding:28;">
+            <ImageView fx:id="posterImage" fitHeight="400" fitWidth="280" preserveRatio="true" />
+            <VBox alignment="TOP_LEFT" prefWidth="440" spacing="14">
+                <Label fx:id="movieTitleLabel" styleClass="section-title" text="ชื่อหนัง">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="timeLabel" styleClass="subtitle" text="รอบฉาย: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="seatsLabel" styleClass="subtitle" text="ที่นั่ง: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="priceLabel" styleClass="subtitle" text="ราคา: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Separator />
+                <VBox spacing="10" styleClass="panel-accent">
+                    <Label text="ชื่อ">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <TextField fx:id="nameField" prefWidth="260" promptText="ชื่อ-นามสกุล">
+                  <font>
+                     <Font size="18.0" />
+                  </font></TextField>
+                    <Label text="เบอร์">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Label>
+                    <TextField fx:id="phoneField" prefWidth="260" promptText="000-0000000">
+                  <font>
+                     <Font size="18.0" />
+                  </font></TextField>
+                    <Label fx:id="formHintLabel" style="-fx-text-fill:#e9f1ff;" text="" />
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" styleClass="btn-secondary" text="กลับ" />
+            <Button onAction="#handleNext" styleClass="btn-primary" text="ถัดไป" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

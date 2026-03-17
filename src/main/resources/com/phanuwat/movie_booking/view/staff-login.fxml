@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" styleClass="app-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.phanuwat.movie_booking.controller.StaffLoginController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label styleClass="header-title" text="เข้าสู่ระบบพนักงาน">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="12" style="-fx-padding:24;">
+            <VBox maxWidth="420" spacing="10" styleClass="card">
+                <Label styleClass="section-title" text="เข้าสู่ระบบ">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label text="Username">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <TextField fx:id="usernameField" promptText="Username">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+                <Label text="Password">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <PasswordField fx:id="passwordField" promptText="Password">
+               <font>
+                  <Font size="18.0" />
+               </font></PasswordField>
+                <Label fx:id="errorLabel" managed="false" style="-fx-text-fill:#d61c1c;" text="" visible="false" />
+                <Button defaultButton="true" onAction="#handleLogin" styleClass="btn-primary" text="เข้าสู่ระบบ">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" styleClass="btn-secondary" text="กลับ" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

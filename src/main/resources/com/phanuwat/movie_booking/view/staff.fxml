@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.phanuwat.movie_booking.controller.StaffController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label styleClass="header-title" text="สำหรับพนักงาน">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane style="-fx-padding:12;" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED">
+            <tabs>
+                <Tab closable="false" text="แดชบอร์ด">
+                    <VBox spacing="10" style="-fx-padding:12;">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label styleClass="section-title" text="สรุปยอดการซื้อ">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Label>
+                            <Button onAction="#handleDashboardRefresh" styleClass="btn-secondary" text="รีเฟรช">
+                        <font>
+                           <Font size="18.0" />
+                        </font></Button>
+                        </HBox>
+                        <TableView fx:id="dashboardTable" prefHeight="520">
+                            <columns>
+                                <TableColumn fx:id="dashboardMovieColumn" prefWidth="220" resizable="false" text="ชื่อหนัง" />
+                                <TableColumn fx:id="dashboardShowtimeColumn" prefWidth="155.0" resizable="false" text="รอบ" />
+                                <TableColumn fx:id="dashboardSeatColumn" prefWidth="269.0" resizable="false" text="ที่นั่งที่ขาย" />
+                                <TableColumn fx:id="dashboardRevenueColumn" prefWidth="297.0" resizable="false" text="ยอดขาย (บาท)" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <Tab closable="false" text="รายการจอง">
+                    <VBox spacing="10" style="-fx-padding:12;">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label styleClass="section-title" text="รายการจอง" />
+                            <Button onAction="#handleRefresh" styleClass="btn-secondary" text="รีเฟรช" />
+                        </HBox>
+                        <TableView fx:id="bookingTable" prefHeight="520">
+                            <columns>
+                                <TableColumn fx:id="ticketColumn" prefWidth="110" resizable="false" text="Ticket ID" />
+                                <TableColumn fx:id="movieColumn" prefWidth="140" resizable="false" text="หนัง" />
+                                <TableColumn fx:id="timeColumn" prefWidth="70" resizable="false" text="รอบ" />
+                                <TableColumn fx:id="seatsColumn" prefWidth="160" resizable="false" text="ที่นั่ง" />
+                                <TableColumn fx:id="nameColumn" prefWidth="120" resizable="false" text="ชื่อ" />
+                                <TableColumn fx:id="phoneColumn" prefWidth="110" resizable="false" text="เบอร์" />
+                                <TableColumn fx:id="priceColumn" prefWidth="90" resizable="false" text="ราคา" />
+                                <TableColumn fx:id="timeStampColumn" prefWidth="140" resizable="false" text="เวลา" />
+                            </columns>
+                        </TableView>
+                        <HBox fx:id="bookingActionBox" alignment="CENTER_RIGHT" spacing="10">
+                            <Button fx:id="bookingEditButton" onAction="#handleEditBookingPopup" text="แก้ไข" />
+                            <Button fx:id="bookingDeleteButton" onAction="#handleDeleteBooking" text="ลบ" />
+                        </HBox>
+                    </VBox>
+                </Tab>
+                <Tab closable="false" text="ฐานข้อมูลหนัง">
+                    <VBox spacing="10" style="-fx-padding:12;">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label styleClass="section-title" text="ฐานข้อมูลหนัง" />
+                            <Button onAction="#handleMovieRefresh" styleClass="btn-secondary" text="รีเฟรช" />
+                            <Button fx:id="addButton" onAction="#handleAddMoviePopup" styleClass="btn-primary" text="เพิ่มหนัง" />
+                        </HBox>
+                        <TableView fx:id="movieTable" prefHeight="520">
+                            <columns>
+                                <TableColumn fx:id="movieTitleColumn" prefWidth="180" resizable="false" text="ชื่อหนัง" />
+                                <TableColumn fx:id="movieDurationColumn" prefWidth="100" resizable="false" text="ความยาว" />
+                                <TableColumn fx:id="movieDirectorColumn" prefWidth="160" resizable="false" text="ผู้กำกับ" />
+                                <TableColumn fx:id="movieShowtimesColumn" prefWidth="260" resizable="false" text="รอบฉาย" />
+                                <TableColumn fx:id="moviePosterColumn" prefWidth="160" resizable="false" text="โปสเตอร์" />
+                            </columns>
+                        </TableView>
+                        <HBox fx:id="movieActionBox" alignment="CENTER_RIGHT" spacing="10">
+                            <Button fx:id="updateButton" onAction="#handleEditMoviePopup" text="แก้ไข" />
+                            <Button fx:id="deleteButton" onAction="#handleDeleteMovie" text="ลบ" />
+                        </HBox>
+                        <Label fx:id="statusLabel" text="" />
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" styleClass="btn-secondary" text="กลับ" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

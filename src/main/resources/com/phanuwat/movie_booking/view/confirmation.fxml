@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="app-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.phanuwat.movie_booking.controller.ConfirmationController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
+            <Label styleClass="header-title" text="ยืนยันการจอง">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="TOP_CENTER" spacing="32" style="-fx-padding:28;">
+            <ImageView fx:id="posterImage" fitHeight="400" fitWidth="280" preserveRatio="true" />
+            <VBox alignment="TOP_LEFT" prefWidth="440" spacing="12">
+                <Label fx:id="movieTitleLabel" styleClass="section-title" text="ชื่อหนัง">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="durationLabel" styleClass="subtitle" text="ความยาว: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="timeLabel" styleClass="subtitle" text="รอบฉาย: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="seatsLabel" styleClass="subtitle" text="ที่นั่ง: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="priceLabel" styleClass="subtitle" text="ราคา: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="nameLabel" styleClass="subtitle" text="ชื่อผู้จอง: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="phoneLabel" styleClass="subtitle" text="เบอร์ผู้จอง: -">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" styleClass="footer-bar">
+            <Button onAction="#handleBack" prefWidth="94.0" styleClass="btn-secondary" text="กลับ" />
+            <Button onAction="#handleConfirm" styleClass="btn-primary" text="ยืนยัน" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
