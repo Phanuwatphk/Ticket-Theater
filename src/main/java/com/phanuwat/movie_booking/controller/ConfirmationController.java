@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.phanuwat.movie_booking.store.BookingStore;
+import com.phanuwat.movie_booking.service.BookingService;
 import com.phanuwat.movie_booking.model.Movie;
 import com.phanuwat.movie_booking.model.Seat;
 import com.phanuwat.movie_booking.model.Showtimes;
@@ -103,7 +104,7 @@ public class ConfirmationController {
 
     @FXML
     private void handleConfirm() {
-        String ticketId = BookingStore.allocateTicketRange(selectedSeats.size());
+        String ticketId = BookingService.allocateTicketRange(selectedSeats.size());
         String seatsText = selectedSeats.stream()
                 .map(seat -> seat.getRow() + seat.getColumn())
                 .collect(Collectors.joining(", "));
@@ -121,7 +122,7 @@ public class ConfirmationController {
                 totalPrice,
                 timestamp
         );
-        BookingStore.addBookingWithRecord(movie.getTitle(), showtime.getTime(), selectedSeats, record);
+        BookingService.addBookingWithRecord(movie.getTitle(), showtime.getTime(), selectedSeats, record);
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/phanuwat/movie_booking/view/ticket.fxml")

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.phanuwat.movie_booking.store.BookingStore;
+import com.phanuwat.movie_booking.service.BookingService;
 import com.phanuwat.movie_booking.model.Movie;
 import com.phanuwat.movie_booking.model.Seat;
 import com.phanuwat.movie_booking.model.Showtimes;
@@ -81,7 +81,7 @@ public class SeatSelectionController {
         this.preselectedSeatCodes = preselectedSeats.stream()
                 .map(seat -> seat.getRow() + seat.getColumn())
                 .collect(Collectors.toSet());
-        this.bookedSeatCodes = BookingStore.getBookedSeats(movie.getTitle(), showtime.getTime());
+        this.bookedSeatCodes = BookingService.getBookedSeats(movie.getTitle(), showtime.getTime());
         movieTitleLabel.setText(movie.getTitle());
         timeLabel.setText("เวลา: " + showtime.getTime());
         if (theaterLabel != null) {

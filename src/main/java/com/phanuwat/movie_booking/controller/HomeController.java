@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.phanuwat.movie_booking.data.MockData;
+import com.phanuwat.movie_booking.service.MovieService;
 import com.phanuwat.movie_booking.model.Movie;
 import com.phanuwat.movie_booking.model.Showtimes;
 
@@ -40,7 +40,7 @@ public class HomeController {
 
     @FXML
     public void initialize() {
-        Map<String, List<Showtimes>> showtimes = MockData.getShowtimesMap();
+        Map<String, List<Showtimes>> showtimes = MovieService.getShowtimesMap();
         Set<String> genres = new HashSet<>();
         genres.add("ทั้งหมด"); 
         
@@ -83,7 +83,7 @@ public class HomeController {
     private void loadMovies(String keyword, String selectedGenre) {
         movieContainer.getChildren().clear();
 
-        Map<String, List<Showtimes>> showtimes = MockData.getShowtimesMap();
+        Map<String, List<Showtimes>> showtimes = MovieService.getShowtimesMap();
         List<String> movies = new ArrayList<>(showtimes.keySet());
 
         for (String movieTitle : movies) {

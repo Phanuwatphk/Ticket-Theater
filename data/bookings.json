@@ -1,5 +1,10 @@
 {
   "bookedSeats": {
+    "Interstellar@18:00": [
+      "D10",
+      "D12",
+      "D11"
+    ],
     "บอดี้การ์ดหน้าเหลี่ยม 1@08:00": [
       "B20",
       "A1",
@@ -98,7 +103,17 @@
       "phone": "0123456789",
       "totalPrice": "320 บาท",
       "timestamp": "2026-03-17 20:09"
+    },
+    {
+      "ticketId": "T0172-T0174",
+      "movieTitle": "Interstellar",
+      "showtime": "18:00",
+      "seats": "D10, D11, D12",
+      "name": "ฟลุ๊ค",
+      "phone": "0636669999",
+      "totalPrice": "480 บาท",
+      "timestamp": "2026-03-17 22:00"
     }
   ],
-  "ticketCounter": 172
+  "ticketCounter": 175
 }
